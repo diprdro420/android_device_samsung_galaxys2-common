@@ -14,20 +14,38 @@
 # limitations under the License.
 #
 COMMON_PATH := device/samsung/galaxys2-common
+LOCAL_PATH := device/samsung/i777
 
 DEVICE_PACKAGE_OVERLAYS := $(COMMON_PATH)/overlay
 
 # Rootdir
 PRODUCT_COPY_FILES := \
     $(COMMON_PATH)/rootdir/fstab.smdk4210:root/fstab.smdk4210 \
+    $(COMMON_PATH)/rootdir/fstab.smdk4210:root/fstab.smdk4210.f2fs \
     $(COMMON_PATH)/rootdir/lpm.rc:root/lpm.rc \
     $(COMMON_PATH)/rootdir/init.smdk4210.usb.rc:root/init.smdk4210.usb.rc \
     $(COMMON_PATH)/rootdir/init.smdk4210.rc:root/init.smdk4210.rc \
     $(COMMON_PATH)/rootdir/ueventd.smdk4210.rc:root/ueventd.smdk4210.rc
+    
+# Recovery files
+PRODUCT_COPY_FILES += \
+	$(COMMON_PATH)/recovery/root/res/misc/bootmenu.zip:recovery/root/res/misc/bootmenu.zip \
+	$(COMMON_PATH)/recovery/root/res/misc/tool.zip:recovery/root/res/misc/tool.zip \
+	$(COMMON_PATH)/recovery/root/res/misc/mount:recovery/root/res/misc/mount \
+	$(COMMON_PATH)/recovery/root/res/misc/mount.2:recovery/root/res/misc/mount.2 \
+	$(COMMON_PATH)/recovery/root/res/misc/umount:recovery/root/res/misc/umount \
+	$(COMMON_PATH)/recovery/root/res/misc/umount.2:recovery/root/res/misc/umount.2 \
+	$(COMMON_PATH)/recovery/root/res/misc/env.sh:recovery/root/res/misc/env.sh \
+	$(COMMON_PATH)/recovery/root/res/misc/virtual_keys.2.png:recovery/root/res/misc/virtual_keys.2.png \
+	$(COMMON_PATH)/recovery/root/sbin/aroma:recovery/root/sbin/aroma \
+	$(COMMON_PATH)/recovery/root/sbin/bootmenu.sh:recovery/root/sbin/bootmenu.sh
 
 # Recovery rootdir
 PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/rootdir/init.recovery.smdk4210.rc:root/init.recovery.smdk4210.rc
+
+# Dual boot recovery
+TARGET_RECOVERY_INITRC := device/samsung/i777/recovery/root/init.rc
 
 # Netflix hack
 PRODUCT_COPY_FILES += \
