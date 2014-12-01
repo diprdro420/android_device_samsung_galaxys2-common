@@ -36,6 +36,7 @@ ifdef EXYNOS4210_ENHANCEMENTS
 COMMON_GLOBAL_CFLAGS += -DEXYNOS4_ENHANCEMENTS
 COMMON_GLOBAL_CFLAGS += -DEXYNOS4210_ENHANCEMENTS
 COMMON_GLOBAL_CFLAGS += -DDISABLE_HW_ID_MATCH_CHECK
+COMMON_GLOBAL_CFLAGS += -DFORCE_SCREENSHOT_CPU_PATH
 endif
 
 BOARD_VENDOR := samsung
@@ -54,7 +55,7 @@ BOARD_NAND_PAGE_SIZE := 4096
 BOARD_NAND_SPARE_SIZE := 128
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_BASE := 0x40000000
-BOARD_KERNEL_CMDLINE := console=ttySAC2,115200 consoleblank=0
+BOARD_KERNEL_CMDLINE := console=ttySAC2,115200 consoleblank=0 androidboot.selinux=permissive
 
 # Filesystem
 TARGET_USERIMAGES_USE_EXT4 := true
@@ -78,6 +79,9 @@ COMMON_GLOBAL_CFLAGS += -DFORCE_SCREENSHOT_CPU_PATH -DWORKAROUND_BUG_10194508
 # FIMG Acceleration
 BOARD_USES_FIMGAPI := true
 BOARD_USES_SKIA_FIMGAPI := true
+
+# Logging
+TARGET_USES_LOGD := false
 
 # Enable WEBGL in WebKit
 ENABLE_WEBGL := true
@@ -138,18 +142,18 @@ BOARD_VOLD_DISC_HAS_MULTIPLE_MAJORS := true
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/s3c-usbgadget/gadget/lun%d/file"
 
 # Selinux
-BOARD_SEPOLICY_DIRS += \
-    device/samsung/galaxys2-common/selinux
+# BOARD_SEPOLICY_DIRS += \
+#    device/samsung/galaxys2-common/selinux
 
-BOARD_SEPOLICY_UNION += \
-    device.te \
-    drmserver.te \
-    ueventd.te \
-    domain.te \
-    file.te \
-    file_contexts \
-    rild.te \
-    vold.te
+#BOARD_SEPOLICY_UNION += \
+#    device.te \
+#    drmserver.te \
+#    ueventd.te \
+#    domain.te    
+#    file.te \
+#    file_contexts \
+#    rild.te \
+#    vold.te
 
 # Recovery
 BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/samsung/galaxys2-common/recovery/recovery_keys.c
@@ -172,7 +176,7 @@ BOARD_BATTERY_DEVICE_NAME := "battery"
 BOARD_CHARGER_RES := device/samsung/galaxys2-common/res/charger
 
 BOARD_CUSTOM_BOOTIMG_MK := device/samsung/galaxys2-common/shbootimg.mk
-
+BOARD_USES_LEGACY_MMAP := true
 # Override healthd HAL
 BOARD_HAL_STATIC_LIBRARIES := libhealthd.exynos4
 
