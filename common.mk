@@ -55,7 +55,7 @@ PRODUCT_COPY_FILES += \
     $(COMMON_PATH)/configs/sirfgps.conf:system/etc/sirfgps.conf
 
 # Packages
-PRODUCT_PACKAGES := \
+PRODUCT_PACKAGES += \
     com.android.future.usb.accessory \
     SamsungServiceMode \
     Torch
@@ -128,6 +128,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # RIL
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.telephony.ril_class=SamsungExynos4RIL \
+    ro.telephony.ril.config=fakeiccid \
     mobiledata.interfaces=pdp0,wlan0,gprs,ppp0,rmnet0,rmnet1 \
     ro.telephony.call_ring.multiple=false \
     ro.telephony.call_ring.delay=3000
