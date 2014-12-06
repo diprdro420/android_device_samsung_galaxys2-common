@@ -19,6 +19,9 @@
 # by BoardConfigVendor.mk
 BOARD_USES_GENERIC_AUDIO := false
 
+BOARD_USE_SAMSUNG_COLORFORMAT := true
+USE_SAMSUNG_COLORFORMAT := true
+
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_SMP := true
@@ -104,6 +107,7 @@ BOARD_USE_YAMAHA_MC1N2_AUDIO := true
 # RIL
 BOARD_PROVIDES_LIBRIL := true
 BOARD_MODEM_TYPE := xmm6260
+BOARD_NEEDS_SEC_RIL_WORKAROUND := true
 
 # Camera
 BOARD_USES_PROPRIETARY_LIBFIMC := true
@@ -166,6 +170,9 @@ BOARD_SUPPRESS_EMMC_WIPE := true
 BOARD_RECOVERY_SWIPE := true
 TARGET_RECOVERY_FSTAB := device/samsung/galaxys2-common/rootdir/fstab.smdk4210
 RECOVERY_FSTAB_VERSION := 2
+
+# RIL Class
+BOARD_RIL_CLASS := ../../../hardware/samsung/ril
 
 # Device specific headers
 TARGET_SPECIFIC_HEADER_PATH := device/samsung/galaxys2-common/include
